@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.CharacterRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.service.CharacterService;
 
 import javax.annotation.Resource;
 
@@ -19,7 +20,7 @@ public class Application {
 	private static final Log LOG = LogFactory.getLog(Application.class);
 
 	@Resource
-	CharacterRepository characterRepository;
+	CharacterService characterService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -34,13 +35,13 @@ public class Application {
 			Character character = new Character();
 			character.setName("Andrzej - Wojownik o dwóch twarzach");
 			character.setHealth(99);
-			characterRepository.save(character);
+			characterService.create(character);
 
-			System.out.println(characterRepository.findById(1).toString());
+			System.out.println(characterService.get(1));
 
-//			character.setId(3);
-//
-//			characterRepository.delete(character);
+			character.setId(2);
+
+			characterService.delete(character);
 
 		};
 	}
