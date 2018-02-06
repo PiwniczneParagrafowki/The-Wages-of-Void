@@ -2,6 +2,7 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +53,12 @@ public class CharacterController {
     public ResponseEntity<Character> updateCharacter(@PathVariable("id") long id, @RequestBody Character character) {
         LOG.info("PUT /character/{id} id:"+id);
         if(character.getId()!=id) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        characterService.update(character);
+        try {
+            characterService.update(character);
+        } catch (EmptyResultDataAccessException e) {
+            LOG.warn("UPDATE FAILED: Character with id=" + id + " not found in the database.");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 

@@ -1,5 +1,6 @@
 package pl.piwniczneparagrafowki.thewagesofvoid.application.service;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.CharacterRepository;
@@ -31,6 +32,8 @@ public class CharacterServiceImpl implements CharacterService {
         oldCharacter = characterRepository.findById(character.getId());
         if(oldCharacter!=null) {
             characterRepository.save(character);
+        } else {
+            throw new EmptyResultDataAccessException(1);
         }
         return character;
     }
