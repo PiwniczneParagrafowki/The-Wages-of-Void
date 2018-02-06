@@ -1,8 +1,7 @@
 package pl.piwniczneparagrafowki.thewagesofvoid.application.service;
 
 import org.springframework.stereotype.Service;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.dao.CharacterDao;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.dao.CharacterDaoImpl;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.CharacterRepository;
 
 import javax.annotation.Resource;
 
@@ -14,6 +13,5 @@ import javax.annotation.Resource;
 public class CharacterServiceImpl implements CharacterService {
 
     @Resource
-    CharacterDaoImpl characterDao;
-
+    CharacterRepository characterRepository;
 }

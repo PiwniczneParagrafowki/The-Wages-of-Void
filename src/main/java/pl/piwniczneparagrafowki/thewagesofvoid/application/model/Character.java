@@ -14,7 +14,7 @@ public class Character {
     @Id
     @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name="name")
     @NotNull
@@ -22,23 +22,23 @@ public class Character {
 
     @Column(name="health")
     @NotNull
-    private String health;
+    private int health;
 
     public Character() {
         //
     }
 
-    public Character(int id, String name, String health) {
+    public Character(long id, String name, int health) {
         this.id = id;
         this.name = name;
         this.health = health;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,11 +50,11 @@ public class Character {
         this.name = name;
     }
 
-    public String getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(String health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
