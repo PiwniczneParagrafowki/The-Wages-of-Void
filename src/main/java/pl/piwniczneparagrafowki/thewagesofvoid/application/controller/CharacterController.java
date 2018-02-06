@@ -2,6 +2,7 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.service.CharacterService;
 
 import javax.annotation.Resource;
@@ -16,5 +17,6 @@ public class CharacterController {
 
     @Resource
     CharacterService characterService;
+
 
 }
