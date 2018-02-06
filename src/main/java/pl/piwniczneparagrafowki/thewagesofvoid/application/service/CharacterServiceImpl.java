@@ -18,8 +18,21 @@ public class CharacterServiceImpl implements CharacterService {
     CharacterRepository characterRepository;
 
     @Override
-    public Character save(Character character) {
-        return characterRepository.save(character);
+    public Character create(Character character) {
+        if(characterRepository.findById(character.getId())==null) {
+            characterRepository.save(character);
+        }
+        return character;
+    }
+
+    @Override
+    public Character update(Character character) {
+        Character oldCharacter;
+        oldCharacter = characterRepository.findById(character.getId());
+        if(oldCharacter!=null) {
+            characterRepository.save(character);
+        }
+        return character;
     }
 
     @Override

@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface CharacterService {
 
-    Character save(Character character);
+    Character create(Character character);
+
+    Character update(Character character);
 
     Character get(long id);
 
