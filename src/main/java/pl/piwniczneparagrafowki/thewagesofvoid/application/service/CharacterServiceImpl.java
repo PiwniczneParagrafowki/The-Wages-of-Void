@@ -1,5 +1,6 @@
 package pl.piwniczneparagrafowki.thewagesofvoid.application.service;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
@@ -22,6 +23,8 @@ public class CharacterServiceImpl implements CharacterService {
     public Character create(Character character) {
         if(characterRepository.findById(character.getId())==null) {
             characterRepository.save(character);
+        } else {
+            throw new DuplicateKeyException("CREATE FAILED: Object with id=" + character.getId() + " already exist in the database.");
         }
         return character;
     }
@@ -33,14 +36,19 @@ public class CharacterServiceImpl implements CharacterService {
         if(oldCharacter!=null) {
             characterRepository.save(character);
         } else {
-            throw new EmptyResultDataAccessException(1);
+            throw new EmptyResultDataAccessException("UPDATE FAILED: Character with id=" + character.getId() + " not found in the database.", 1);
         }
         return character;
     }
 
     @Override
     public Character get(long id) {
-        return characterRepository.findById(id);
+        Character character;
+        character = characterRepository.findById(id);
+        if(character==null) {
+            throw new EmptyResultDataAccessException("GET FAILED: Character with id=" + id + " not found in the database.", 1);
+        }
+        return character;
     }
 
     @Override

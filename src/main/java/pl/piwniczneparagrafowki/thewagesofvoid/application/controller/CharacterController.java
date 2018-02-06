@@ -2,6 +2,7 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +39,24 @@ public class CharacterController {
     public ResponseEntity<Character> getCharacter(@PathVariable("id") long id) {
         LOG.info("GET /api/character/{id} id:"+id);
         Character character;
-        character = characterService.get(id);
+        try {
+            character = characterService.get(id);
+        } catch (EmptyResultDataAccessException e) {
+            LOG.warn(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/character/", method = RequestMethod.POST)
     public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
         LOG.info("POST /character/ character:" + character.getName());
-        characterService.create(character);
+        try {
+            characterService.create(character);
+        } catch (DuplicateKeyException e) {
+            LOG.warn(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
@@ -56,7 +67,7 @@ public class CharacterController {
         try {
             characterService.update(character);
         } catch (EmptyResultDataAccessException e) {
-            LOG.warn("UPDATE FAILED: Character with id=" + id + " not found in the database.");
+            LOG.warn(e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Character>(character, HttpStatus.OK);

@@ -32,17 +32,6 @@ public class Application {
 
 			LOG.info("Application 'The Wages of Void' started");
 
-			Character character = new Character();
-			character.setName("Andrzej - Wojownik o dwóch twarzach");
-			character.setHealth(99);
-			characterService.create(character);
-
-			System.out.println(characterService.get(1));
-
-			character.setId(2);
-
-			characterService.delete(character);
-
 		};
 	}
 
