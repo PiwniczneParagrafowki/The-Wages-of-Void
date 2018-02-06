@@ -18,7 +18,7 @@ public class CharacterDaoImpl implements CharacterDao {
 
     private static final Logger logger = LoggerFactory.getLogger(CharacterDaoImpl.class);
 
-    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Character.class).buildSessionFactory();
+//    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Character.class).buildSessionFactory();
 
     @Override
     public void add(Character character) {

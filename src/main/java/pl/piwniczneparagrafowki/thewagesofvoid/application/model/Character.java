@@ -8,11 +8,11 @@ import javax.validation.constraints.NotNull;
  * arkadiusz.parafiniuk@gmail.com
  */
 @Entity
-@Table(name="character")
+@Table(name = "character_")
 public class Character {
 
     @Id
-    @Column(name="id")
+    @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
@@ -67,3 +67,4 @@ public class Character {
                 '}';
     }
 }
+
