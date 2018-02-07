@@ -24,14 +24,18 @@ public class Character {
     @NotNull
     private int health;
 
+    @ManyToOne
+    private User user;
+
     public Character() {
         //
     }
 
-    public Character(long id, String name, int health) {
+    public Character(long id, String name, int health, User user) {
         this.id = id;
         this.name = name;
         this.health = health;
+        this.user = user;
     }
 
     public long getId() {
@@ -58,12 +62,21 @@ public class Character {
         this.health = health;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", health='" + health + '\'' +
+                ", health=" + health +
+                ", user=" + user +
                 '}';
     }
 }

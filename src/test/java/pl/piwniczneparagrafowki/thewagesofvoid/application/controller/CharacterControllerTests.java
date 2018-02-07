@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.GlobalControllerExceptionHandler;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.model.User;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.service.CharacterService;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.tools.JsonConverter;
 
@@ -41,8 +42,8 @@ public class CharacterControllerTests {
 
     private MockMvc mockMvc;
 
-    Character character = new Character(1, "Tom", 99);
-    Character character2 = new Character(2, "Jerry", 99);
+    Character character = new Character(1, "Tom", 99, new User());
+    Character character2 = new Character(2, "Jerry", 99, new User());
     List<Character> characters = Arrays.asList(character, character2);
 
     @Before
