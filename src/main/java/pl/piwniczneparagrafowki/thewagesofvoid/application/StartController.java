@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 @RestController
 public class StartController {

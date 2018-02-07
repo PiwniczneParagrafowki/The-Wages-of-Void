@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 @Entity
 @Table(name = "character_")

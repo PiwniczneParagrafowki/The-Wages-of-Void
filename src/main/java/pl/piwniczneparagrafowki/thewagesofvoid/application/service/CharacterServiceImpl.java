@@ -7,11 +7,12 @@ import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.CharacterRepository;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 @Service
 public class CharacterServiceImpl implements CharacterService {
@@ -53,11 +54,22 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public List<Character> getAll() {
-        return characterRepository.findAll();
+        List<Character> characters = new ArrayList<>();
+        characters = characterRepository.findAll();
+        if(characters.isEmpty()) {
+            throw new EmptyResultDataAccessException("GET ALL FAILED: No characters found in the database.", 1);
+        }
+        return characters;
     }
 
     @Override
     public void delete(Character character) {
-        characterRepository.delete(character);
+        Character tmpCharacter;
+        tmpCharacter = characterRepository.findById(character.getId());
+        if(tmpCharacter!=null){
+            characterRepository.delete(character);
+        } else {
+            throw new EmptyResultDataAccessException("GET FAILED: Character with id=" + character.getId() + " not found in the database.", 1);
+        }
     }
 }

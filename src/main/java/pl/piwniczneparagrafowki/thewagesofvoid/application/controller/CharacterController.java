@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 @RestController
 @RequestMapping("/api")
@@ -38,25 +38,14 @@ public class CharacterController {
     @RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
     public ResponseEntity<Character> getCharacter(@PathVariable("id") long id) {
         LOG.info("GET /api/character/{id} id:"+id);
-        Character character;
-        try {
-            character = characterService.get(id);
-        } catch (EmptyResultDataAccessException e) {
-            LOG.warn(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Character character = characterService.get(id);
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/character/", method = RequestMethod.POST)
     public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
         LOG.info("POST /character/ character:" + character.getName());
-        try {
-            characterService.create(character);
-        } catch (DuplicateKeyException e) {
-            LOG.warn(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
+        characterService.create(character);
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
@@ -64,18 +53,13 @@ public class CharacterController {
     public ResponseEntity<Character> updateCharacter(@PathVariable("id") long id, @RequestBody Character character) {
         LOG.info("PUT /character/{id} id:"+id);
         if(character.getId()!=id) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        try {
-            characterService.update(character);
-        } catch (EmptyResultDataAccessException e) {
-            LOG.warn(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        characterService.update(character);
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/character/", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteUser(@RequestBody Character character) {
-        LOG.info("DELETE /character/ charatcer:" + character.getName());
+    public ResponseEntity<?> deleteCharacter(@RequestBody Character character) {
+        LOG.info("DELETE /character/ character:" + character.getName());
         characterService.delete(character);
         return new ResponseEntity(HttpStatus.OK);
     }

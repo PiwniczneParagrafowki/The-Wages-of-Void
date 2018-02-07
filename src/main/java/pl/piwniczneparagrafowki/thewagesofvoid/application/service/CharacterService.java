@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 public interface CharacterService {
 
