@@ -30,7 +30,7 @@ public class User {
     @NotNull
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Character> characters = new ArrayList<>();
 
     public User() {
