@@ -2,12 +2,9 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.StartController;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.service.CharacterService;
 
@@ -32,7 +29,8 @@ public class CharacterController {
         LOG.info("GET /api/character/");
         List<Character> characters;
         characters = characterService.getAll();
-        return new ResponseEntity<List<Character>>(characters, HttpStatus.OK);
+        if(characters.isEmpty()) return new ResponseEntity<>(characters, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(characters, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
@@ -46,7 +44,7 @@ public class CharacterController {
     public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
         LOG.info("POST /character/ character:" + character.getName());
         characterService.create(character);
-        return new ResponseEntity<Character>(character, HttpStatus.OK);
+        return new ResponseEntity<Character>(character, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/character/{id}", method = RequestMethod.PUT)

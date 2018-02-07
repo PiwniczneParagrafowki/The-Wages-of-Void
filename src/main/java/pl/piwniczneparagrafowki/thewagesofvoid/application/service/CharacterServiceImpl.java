@@ -56,9 +56,6 @@ public class CharacterServiceImpl implements CharacterService {
     public List<Character> getAll() {
         List<Character> characters = new ArrayList<>();
         characters = characterRepository.findAll();
-        if(characters.isEmpty()) {
-            throw new EmptyResultDataAccessException("GET ALL FAILED: No characters found in the database.", 1);
-        }
         return characters;
     }
 
