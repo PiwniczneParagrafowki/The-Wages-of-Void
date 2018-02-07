@@ -2,6 +2,8 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
- * arkadiusz.parafiniuk@gmail.com
+ * @Author arkadiusz.parafiniuk@gmail.com
  */
 @RestController
 @RequestMapping("/api")
@@ -36,8 +38,7 @@ public class CharacterController {
     @RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
     public ResponseEntity<Character> getCharacter(@PathVariable("id") long id) {
         LOG.info("GET /api/character/{id} id:"+id);
-        Character character;
-        character = characterService.get(id);
+        Character character = characterService.get(id);
         return new ResponseEntity<Character>(character, HttpStatus.OK);
     }
 
@@ -57,8 +58,8 @@ public class CharacterController {
     }
 
     @RequestMapping(value = "/character/", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteUser(@RequestBody Character character) {
-        LOG.info("DELETE /character/ charatcer:" + character.getName());
+    public ResponseEntity<?> deleteCharacter(@RequestBody Character character) {
+        LOG.info("DELETE /character/ character:" + character.getName());
         characterService.delete(character);
         return new ResponseEntity(HttpStatus.OK);
     }
