@@ -2,6 +2,8 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
@@ -20,21 +22,30 @@ public class Character {
     @NotNull
     private String name;
 
-    @Column(name="health")
+    @Column(name="hp")
     @NotNull
-    private int health;
+    private int hp;
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "character")
+    private List<Item> item = new ArrayList<>();
 
     public Character() {
         //
     }
 
-    public Character(long id, String name, int health, User user) {
+    public Character(String name, int hp, User user) {
+        this.name = name;
+        this.hp = hp;
+        this.user = user;
+    }
+
+    public Character(long id, String name, int hp, User user) {
         this.id = id;
         this.name = name;
-        this.health = health;
+        this.hp = hp;
         this.user = user;
     }
 
@@ -54,12 +65,12 @@ public class Character {
         this.name = name;
     }
 
-    public int getHealth() {
-        return health;
+    public int getHp() {
+        return hp;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public User getUser() {
@@ -70,12 +81,20 @@ public class Character {
         this.user = user;
     }
 
+    public List<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(List<Item> item) {
+        this.item = item;
+    }
+
     @Override
     public String toString() {
         return "Character{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", health=" + health +
+                ", hp=" + hp +
                 ", user=" + user +
                 '}';
     }

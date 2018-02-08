@@ -9,6 +9,7 @@ import pl.piwniczneparagrafowki.thewagesofvoid.application.model.User;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.UserRepository;
 
 import javax.annotation.Resource;
+import javax.validation.ValidationException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -29,9 +30,13 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public User create(User user) {
+    public User create(User user){
         String cryptedPassword = cryptWithMD5(user.getPassword());
-        user.setPassword(cryptedPassword);
+        if (cryptedPassword==null) {
+            throw new ValidationException("CREATE FAILED: Failed validation for the user password.");
+        } else {
+            user.setPassword(cryptedPassword);
+        }
         if(userRepository.findById(user.getId())==null) {
             userRepository.save(user);
         } else {
