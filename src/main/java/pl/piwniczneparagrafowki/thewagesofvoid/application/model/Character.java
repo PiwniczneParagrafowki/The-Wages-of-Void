@@ -2,6 +2,8 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class created by Arkadiusz Parafiniuk
@@ -20,15 +22,24 @@ public class Character {
     @NotNull
     private String name;
 
-    @Column(name="health")
+    @Column(name="hp")
     @NotNull
     private int health;
 
     @ManyToOne
     private User user;
 
+    @OneToMany(mappedBy = "character")
+    private List<Item> item = new ArrayList<>();
+
     public Character() {
         //
+    }
+
+    public Character(String name, int health, User user) {
+        this.name = name;
+        this.health = health;
+        this.user = user;
     }
 
     public Character(long id, String name, int health, User user) {

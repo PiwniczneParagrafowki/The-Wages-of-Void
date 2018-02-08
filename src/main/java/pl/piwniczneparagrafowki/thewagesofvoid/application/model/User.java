@@ -2,6 +2,7 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,12 @@ public class User {
     private long id;
 
     @Column(name="name")
-    @NotNull
+    @Size(min = 5, max = 14)
     private String name;
 
     @Column(name="password")
     @NotNull
+    @Size(min = 5, max = 30)
     private String password;
 
     @Column(name="email")
@@ -35,6 +37,12 @@ public class User {
 
     public User() {
         //
+    }
+
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
     }
 
     public User(long id, String name, String password, String email) {
@@ -74,6 +82,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
     }
 
     @Override
