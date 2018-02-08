@@ -11,4 +11,6 @@ import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Paragraph;
 @Repository
 public interface ParagraphRepository extends CrudRepository<Paragraph, Long> {
 
+    Paragraph findById(long id);
+
 }
