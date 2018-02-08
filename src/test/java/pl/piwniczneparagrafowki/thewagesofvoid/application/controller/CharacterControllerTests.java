@@ -81,10 +81,10 @@ public class CharacterControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id").value(character.getId()))
                 .andExpect(jsonPath("$.[0].name").value(character.getName()))
-                .andExpect(jsonPath("$.[0].health").value(character.getHealth()))
+                .andExpect(jsonPath("$.[0].health").value(character.getHp()))
                 .andExpect(jsonPath("$.[1].id").value(character2.getId()))
                 .andExpect(jsonPath("$.[1].name").value(character2.getName()))
-                .andExpect(jsonPath("$.[1].health").value(character2.getHealth()));
+                .andExpect(jsonPath("$.[1].health").value(character2.getHp()));
     }
 
     @Test

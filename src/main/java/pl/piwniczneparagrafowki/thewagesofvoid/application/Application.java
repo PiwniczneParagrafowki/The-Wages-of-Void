@@ -51,7 +51,7 @@ public class Application {
 
 			Character testCharacter = character;
 			testCharacter.setName("Darwin");
-			testCharacter.setHealth(12);
+			testCharacter.setHp(12);
 
 			System.out.println(itemRepository.findByNameAndCharacter("Coś", testCharacter));
 

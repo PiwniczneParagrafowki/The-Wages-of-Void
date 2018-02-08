@@ -20,7 +20,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Resource
     ItemRepository itemRepository;
-    
+
     @Override
     public void giveItemToCharacter(Character character, Item item) {
         Item itemInInventory = itemRepository.findByNameAndCharacter(item.getName(), character);
