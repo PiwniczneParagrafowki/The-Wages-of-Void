@@ -7,10 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Hero;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Item;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.User;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.CharacterRepository;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.HeroRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.ItemRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.UserRepository;
 
@@ -22,7 +22,7 @@ public class Application {
 	private static final Log LOG = LogFactory.getLog(Application.class);
 
 	@Resource
-	CharacterRepository characterRepository;
+	HeroRepository heroRepository;
 
 	@Resource
 	ItemRepository itemRepository;
@@ -42,18 +42,19 @@ public class Application {
 
 			User user = userRepository.save(new User("user123", "password", "test@fsd.pl"));
 
-			Character character = characterRepository.save(new Character("Tom", 99, user));
-			Character character2 = characterRepository.save(new Character("Jerry", 99, user));
+			Hero hero = heroRepository.save(new Hero("Tom", 99, user));
+			Hero hero2 = heroRepository.save(new Hero("Jerry", 99, user));
 
-			Item item = itemRepository.save(new Item("Coś", 3, character));
-			Item item2 = itemRepository.save(new Item("Coś innego", 1, character));
-			Item item3 = itemRepository.save(new Item("Coś kogoś innego", 3, character2));
+			Item item = itemRepository.save(new Item("Coś", 3, hero));
+			Item item2 = itemRepository.save(new Item("Coś innego", 1, hero));
+			Item item3 = itemRepository.save(new Item("Coś kogoś innego", 3, hero2));
 
-			Character testCharacter = character;
-			testCharacter.setName("Darwin");
-			testCharacter.setHp(12);
+//			Hero testHero = hero;
+//			testHero.setName("Darwin");
+//			testHero.setHp(12);
 
-			System.out.println(itemRepository.findByNameAndCharacter("Coś", testCharacter));
+//			System.out.println(itemRepository.findByNameAndHero("Coś", testHero));
+//			System.out.println(itemRepository.findByNameAndHeroId("Coś", testHero.getId()));
 
 		};
 	}

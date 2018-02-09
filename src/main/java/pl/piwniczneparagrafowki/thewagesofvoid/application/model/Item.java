@@ -25,23 +25,27 @@ public class Item {
     private int amount;
 
     @ManyToOne
-    private Character character;
+    private Hero hero;
 
     public Item() {
         //
     }
 
-    public Item(String name, int amount, Character character) {
+    public Item(String name) {
         this.name = name;
-        this.amount = amount;
-        this.character = character;
     }
 
-    public Item(long id, String name, int amount, Character character) {
+    public Item(String name, int amount, Hero hero) {
+        this.name = name;
+        this.amount = amount;
+        this.hero = hero;
+    }
+
+    public Item(long id, String name, int amount, Hero hero) {
         this.id = id;
         this.name = name;
         this.amount = amount;
-        this.character = character;
+        this.hero = hero;
     }
 
     public long getId() {
@@ -68,12 +72,12 @@ public class Item {
         this.amount = amount;
     }
 
-    public Character getCharacter() {
-        return character;
+    public Hero getHero() {
+        return hero;
     }
 
-    public void setCharacter(Character character) {
-        this.character = character;
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 
     @Override
@@ -82,7 +86,7 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amount=" + amount +
-                ", character=" + character +
+                ", hero=" + hero +
                 '}';
     }
 }

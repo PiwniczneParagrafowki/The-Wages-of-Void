@@ -2,7 +2,7 @@ package pl.piwniczneparagrafowki.thewagesofvoid.application.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Hero;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import java.util.List;
  * @Author arkadiusz.parafiniuk@gmail.com
  */
 @Repository
-public interface CharacterRepository extends CrudRepository<Character, Long> {
+public interface HeroRepository extends CrudRepository<Hero, Long> {
 
-    Character save(Character character);
+    Hero save(Hero hero);
 
-    Character findById(long id);
+    Hero findById(long id);
 
-    List<Character> findAll();
+    List<Hero> findAll();
 
-    void delete(Character character);
+    void delete(Hero hero);
 
 }

@@ -1,7 +1,8 @@
 package pl.piwniczneparagrafowki.thewagesofvoid.application.service;
 
-import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Character;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Item;
+
+import java.util.List;
 
 /**
  * @Author Arkadiusz Parafiniuk
@@ -9,6 +10,12 @@ import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Item;
  */
 public interface ItemService {
 
-    void giveItemToCharacter(Character character, Item item);
+    List<Item> getAllHeroItems(long heroId);
+
+    Item giveItemToHero(long heroId, String itemName, int amount);
+
+    boolean checkIfHeroHasAnItem(long heroId, String itemName, int expectedAmount);
+
+    void removeItemFromHeroInventory(long heroId, String itemName, int amount);
 
 }

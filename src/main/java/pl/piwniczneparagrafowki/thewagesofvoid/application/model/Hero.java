@@ -10,8 +10,8 @@ import java.util.List;
  * @Author arkadiusz.parafiniuk@gmail.com
  */
 @Entity
-@Table(name = "character_")
-public class Character {
+@Table(name = "hero")
+public class Hero {
 
     @Id
     @Column
@@ -29,20 +29,20 @@ public class Character {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "character")
+    @OneToMany(mappedBy = "hero")
     private List<Item> item = new ArrayList<>();
 
-    public Character() {
+    public Hero() {
         //
     }
 
-    public Character(String name, int hp, User user) {
+    public Hero(String name, int hp, User user) {
         this.name = name;
         this.hp = hp;
         this.user = user;
     }
 
-    public Character(long id, String name, int hp, User user) {
+    public Hero(long id, String name, int hp, User user) {
         this.id = id;
         this.name = name;
         this.hp = hp;
@@ -91,7 +91,7 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Character{" +
+        return "Hero{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", hp=" + hp +

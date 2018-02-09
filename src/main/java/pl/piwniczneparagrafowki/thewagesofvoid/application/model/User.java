@@ -33,7 +33,7 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Character> characters = new ArrayList<>();
+    private List<Hero> heroes = new ArrayList<>();
 
     public User() {
         //
@@ -84,12 +84,12 @@ public class User {
         this.email = email;
     }
 
-    public List<Character> getCharacters() {
-        return characters;
+    public List<Hero> getHeroes() {
+        return heroes;
     }
 
-    public void setCharacters(List<Character> characters) {
-        this.characters = characters;
+    public void setHeroes(List<Hero> heroes) {
+        this.heroes = heroes;
     }
 
     @Override
