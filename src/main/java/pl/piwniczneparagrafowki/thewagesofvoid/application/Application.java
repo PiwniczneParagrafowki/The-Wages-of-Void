@@ -49,12 +49,12 @@ public class Application {
 			Item item2 = itemRepository.save(new Item("Coś innego", 1, hero));
 			Item item3 = itemRepository.save(new Item("Coś kogoś innego", 3, hero2));
 
-			Hero testHero = hero;
-			testHero.setName("Darwin");
-			testHero.setHp(12);
+//			Hero testHero = hero;
+//			testHero.setName("Darwin");
+//			testHero.setHp(12);
 
 //			System.out.println(itemRepository.findByNameAndHero("Coś", testHero));
-			System.out.println(itemRepository.findByNameAndHeroId("Coś", testHero.getId()));
+//			System.out.println(itemRepository.findByNameAndHeroId("Coś", testHero.getId()));
 
 		};
 	}
