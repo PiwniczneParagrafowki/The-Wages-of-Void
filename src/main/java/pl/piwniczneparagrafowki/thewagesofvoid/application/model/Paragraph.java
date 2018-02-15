@@ -51,4 +51,19 @@ public class Paragraph {
                 ", content='" + content + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Paragraph paragraph = (Paragraph) o;
+
+        return id == paragraph.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
 }
