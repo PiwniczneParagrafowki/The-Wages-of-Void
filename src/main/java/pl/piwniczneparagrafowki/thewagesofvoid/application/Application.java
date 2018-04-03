@@ -7,7 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.piwniczneparagrafowki.thewagesofvoid.application.model.Paragraph;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.HeroRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.ItemRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.ParagraphRepository;
@@ -58,14 +57,17 @@ public class Application {
 //			System.out.println(itemRepository.findByNameAndHero("Coś", testHero));
 //			System.out.println(itemRepository.findByNameAndHeroId("Coś", testHero.getId()));
 
-			Paragraph paragraph = new Paragraph();
-			paragraph.setContent("<h1>Hello World!</h1>");
-			paragraph.setId(2);
-			paragraphRepository.save(paragraph);
+//			Paragraph paragraph = new Paragraph();
+//			paragraph.setContent("<h1>Hello World!</h1>");
+//			paragraph.setId(2);
+//			paragraphRepository.save(paragraph);
+//
+//			Paragraph paragraph1 = new Paragraph();
+//			paragraph1.setContent("<a href=\"http://localhost:8080/api/paragraph/1\">Hello</a>");
+//			paragraphRepository.save(paragraph1);
 
-			Paragraph paragraph1 = new Paragraph();
-			paragraph1.setContent("<a href=\"http://localhost:8080/api/paragraph/1\">Hello</a>");
-			paragraphRepository.save(paragraph1);
+			ParagraphsDataMigration paragraphsDataMigration = new ParagraphsDataMigration();
+			paragraphsDataMigration.migrate();
 
 		};
 	}
