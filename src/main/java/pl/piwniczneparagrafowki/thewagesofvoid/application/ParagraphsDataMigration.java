@@ -8,6 +8,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -25,8 +26,10 @@ public class ParagraphsDataMigration {
     public void migrate(){
         System.out.println("Migration started");
 
+        File file = new File(getClass().getClassLoader().getResource("paragraphs/paragraphs.xls").getFile());
+
         try {
-            POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream("/home/arek/The-Wages-of-Void/src/main/resources/paragraphs/paragraphs.ods"));
+            POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(file));
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
             HSSFRow row;
@@ -53,7 +56,7 @@ public class ParagraphsDataMigration {
                     for(int c = 0; c < cols; c++) {
                         cell = row.getCell((short)c);
                         if(cell != null) {
-                            System.out.println("Forumla: " + cell.getCellFormula());
+                            System.out.println("Forumla: " + cell.getStringCellValue());
                         }
                     }
                 }
