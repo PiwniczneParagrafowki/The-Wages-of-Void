@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>thewagesofvoid.application</name>
-	<description>Demo project for Spring Boot</description>
+	<description>The Wages of Void - Browser paragraphs game</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

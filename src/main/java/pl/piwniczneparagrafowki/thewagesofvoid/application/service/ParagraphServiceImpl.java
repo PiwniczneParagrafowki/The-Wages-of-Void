@@ -32,4 +32,11 @@ public class ParagraphServiceImpl implements ParagraphService {
     public List<Paragraph> getAllParagraphs() {
         return paragraphRepository.findAll();
     }
+
+    @Override
+    public void save(long id, String content) {
+        paragraphRepository.save(new Paragraph(id, content));
+    }
+
+
 }

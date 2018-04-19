@@ -11,6 +11,7 @@ import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.HeroReposi
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.ItemRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.ParagraphRepository;
 import pl.piwniczneparagrafowki.thewagesofvoid.application.repository.UserRepository;
+import pl.piwniczneparagrafowki.thewagesofvoid.application.service.ParagraphService;
 
 import javax.annotation.Resource;
 
@@ -31,6 +32,13 @@ public class Application {
 	@Resource
 	ParagraphRepository paragraphRepository;
 
+	@Resource
+	ParagraphService paragraphService;
+
+	@Resource
+	ParagraphsDataMigration paragraphsDataMigration;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
@@ -40,6 +48,8 @@ public class Application {
 		return args -> {
 
 			LOG.info("Application 'The Wages of Void' started");
+
+			paragraphsDataMigration.migrate();
 
 //			User user = userRepository.save(new User("user123", "password", "test@fsd.pl"));
 //
@@ -66,8 +76,12 @@ public class Application {
 //			paragraph1.setContent("<a href=\"http://localhost:8080/api/paragraph/1\">Hello</a>");
 //			paragraphRepository.save(paragraph1);
 
-			ParagraphsDataMigration paragraphsDataMigration = new ParagraphsDataMigration();
-			paragraphsDataMigration.migrate();
+//			ParagraphsDataMigration paragraphsDataMigration = new ParagraphsDataMigration();
+//			paragraphsDataMigration.migrate();
+
+//			ParagraphServiceImpl paragraphService = new ParagraphServiceImpl();
+//			paragraphService.save(1L, "test");
+
 
 		};
 	}

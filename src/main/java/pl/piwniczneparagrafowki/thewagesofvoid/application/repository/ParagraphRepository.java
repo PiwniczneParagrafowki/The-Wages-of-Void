@@ -17,4 +17,6 @@ public interface ParagraphRepository extends CrudRepository<Paragraph, Long> {
 
     List<Paragraph> findAll();
 
+    Paragraph save(Paragraph paragraph);
+
 }
