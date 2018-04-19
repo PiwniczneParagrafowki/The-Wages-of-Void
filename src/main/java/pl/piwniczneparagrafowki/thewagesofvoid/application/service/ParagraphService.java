@@ -14,4 +14,6 @@ public interface ParagraphService {
 
     List<Paragraph> getAllParagraphs();
 
+    void save(long id, String content);
+
 }
